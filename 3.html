@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous" />
+  <style>
+    i {
+      font-size: 50px;
+    }
+
+    .golden {
+      color: gold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="stars_container">
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+  </div>
+
+  <script>
+    "use strict";
+
+    /*
+    1. При наведении на любую из звезд, данной звезде должен ставиться класс
+    golden, также такой класс должен ставиться всем звездам до нее слева.
+    */
+    const elStar = document.querySelector('.stars_container');
+    elStar.addEventListener('mouseover', event => {
+      if (!event.target.classList.contains('fas')) {
+        return;
+      }
+
+      let elTarget = event.target;
+      while (elTarget) {
+        elTarget.classList.add('golden');
+        elTarget = elTarget.previousElementSibling;
+      }
+    });
+
+
+    /*
+    2. Когда мы уводим курсор мыши от звезды, все поставленные классы из первого
+    задания должны быть удалены.
+     */
+
+    elStar.addEventListener('mouseout', event => {
+      if (!event.target.classList.contains('fas')) {
+        return;
+      }
+      let elTarget = event.target;
+      while (elTarget) {
+        elTarget.classList.remove('golden');
+        elTarget = elTarget.previousElementSibling;
+      }
+    });
+
+    /*
+    3. Когда мы переводим мышь от одной звезды к другой, у нас могут мигать
+    звезды (временно могут становиться черными). Почему так? Напишите словами.
+    Можем ли мы это исправить? Если да, то предложите решение.
+    */
+    /*    мигание проиходит при подании курсора на зону между звёздами(пробел) - отключается mouseout. исправить мб так 
+    - записать все звезды в 1 тег или убрать переносы тегов в верстке. */
+  </script>
+</body>
+
+</html>
